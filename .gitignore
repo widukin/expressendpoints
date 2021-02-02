@@ -1,0 +1,12 @@
+# dotenv environment variables file
+.env
+
+# Optional eslint cache
+.eslintcache
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Mac specific
+.DS_Store
