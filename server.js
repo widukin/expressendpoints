@@ -10,7 +10,7 @@ const { PORT } = process.env;
 const app = express();
 const port = PORT;
 
-
+/* get all orders */
 app.get("/orders/", async (req, res) => {
   try {
     const data = await dbConnection.query("SELECT * FROM orders");
@@ -26,5 +26,20 @@ app.get("/orders/", async (req, res) => {
   }
 });
 
+/* get all users */
+app.get("/users/", async (req, res) => {
+  try {
+    const users = await dbConnection.query("SELECT * FROM users");
+    res.json({
+      code: 200,
+      operation: "success",
+      description: "Fetched all users",
+      data: users.rows,
+    });
+  } catch (error) {
+    console.error(Error(error));
+    res.status(500).send("ERROR occurred - no Users for you today");
+  }
+});
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
