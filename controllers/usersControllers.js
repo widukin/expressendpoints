@@ -31,5 +31,5 @@ module.exports = {
       res.status(500).send("ERROR occurred - no User for you today");
     }
   },
-  create: async ()
+  /* create: async () */
 }
