@@ -5,11 +5,17 @@ const express = require("express");
 //import routes
 const usersRoutes = require("./routes/usersRoutes");
 const ordersRoutes = require("./routes/ordersRoutes");
+// import bodyparser
+const bodyParser = require("body-parser");
 
 const { PORT } = process.env || 3000;
 
 const app = express();
 const port = PORT;
+
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", usersRoutes);
 app.use("/orders", ordersRoutes);
