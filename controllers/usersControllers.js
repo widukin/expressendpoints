@@ -31,7 +31,6 @@ module.exports = {
     }
   },
   create: async (req, res) => {
-    console.log(req.body);
     const { first_name, last_name, age } = req.body;
     // validation on the fields
     // if statement to check that all 3 exist, that they are not empty
@@ -61,7 +60,7 @@ module.exports = {
           code: 500,
           message: "Error trying to insert a new user"
         })
-        .send("ERROR occurred - no User for you today");
+        .send("ERROR occurred - cannot create User today");
     }
   }
 }
