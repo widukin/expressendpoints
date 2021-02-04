@@ -33,7 +33,6 @@ module.exports = {
   getById: async (req, res) => {
     try {
       const { id } = req.params;
-  
       const order = await dbConnection.query(
         `SELECT 
           json_build_object(
@@ -61,6 +60,36 @@ module.exports = {
     } catch (e) {
       console.error(Error(e));
       res.status(500).send("ERROR occurred - no Order for you today");
+    }
+  },
+  create: async (req, res) => {
+    const { price, date, user_id } = req.body;
+    // validation on the fields
+    // if statement to check that all 3 exist, that they are not empty
+    
+    try {
+      const dbResponse = await dbConnection.query(
+        `INSERT INTO "orders" (price, date, user_id) 
+        VALUES ($1, $2, $3) 
+        RETURNING *;`, [
+        price,
+        date,
+        user_id,
+      ]);
+      res.json({
+        code: 200,
+        operation: "success",
+        description: "Insert order for user " + user_id,
+        data: dbResponse.rows[0],
+      })
+    } catch (error) {
+      console.error(Error(e));
+      res.status(500)
+        .json({
+          code: 500,
+          message: "Error trying to insert a new order for user" + user_id
+        })
+        .send("ERROR occurred - cannot create Order today");
     }
   },
 }
