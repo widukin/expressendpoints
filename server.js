@@ -18,6 +18,9 @@ const port = PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//to load the files that are in the public directory (img, css, html, js)
+app.use(express.static("public"));
+
 app.use("/users", usersRoutes);
 app.use("/orders", ordersRoutes);
 app.use("/", uploadRoutes);
