@@ -9,6 +9,7 @@ const multer = require("multer");
 //import routes
 const usersRoutes = require("./routes/usersRoutes");
 const ordersRoutes = require("./routes/ordersRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 
 const { PORT } = process.env || 3000;
 
@@ -21,5 +22,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", usersRoutes);
 app.use("/orders", ordersRoutes);
+app.use("/", uploadRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
