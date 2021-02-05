@@ -4,8 +4,6 @@ dotenv.config();
 const express = require("express");
 // import bodyparser
 const bodyParser = require("body-parser");
-// import Multer (a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.)
-const multer = require("multer");
 //import routes
 const usersRoutes = require("./routes/usersRoutes");
 const ordersRoutes = require("./routes/ordersRoutes");
