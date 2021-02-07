@@ -23,9 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use("/images", express.static("uploads"));
 
-app.use("/users", usersRoutes);
-app.use("/orders", ordersRoutes);
-app.use("/token", tokenRoutes);
+app.use("/users", tokenRoutes, usersRoutes);
+app.use("/orders", tokenRoutes, ordersRoutes);
 app.use("/", uploadRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
