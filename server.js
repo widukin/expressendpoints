@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const usersRoutes = require("./routes/usersRoutes");
 const ordersRoutes = require("./routes/ordersRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const tokenRoutes = require("./routes/tokenRoutes");
 
 const { PORT } = process.env || 3000;
 
@@ -20,9 +21,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //to load the files that are in the public directory (img, css, html, js)
 app.use(express.static("public"));
+app.use("/images", express.static("uploads"));
 
 app.use("/users", usersRoutes);
 app.use("/orders", ordersRoutes);
+app.use("/token", tokenRoutes);
 app.use("/", uploadRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
