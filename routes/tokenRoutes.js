@@ -2,6 +2,6 @@ const express = require("express");
 const tokenRouter = express.Router();
 const tokenControllers = require("../controllers/tokenControllers");
 
-router.get("/", tokenControllers.verify);
+tokenRouter.get("/", tokenControllers.verify);
 
-module.exports = router;
+module.exports = tokenRouter;
